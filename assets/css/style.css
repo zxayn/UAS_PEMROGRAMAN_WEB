@@ -158,6 +158,10 @@ body {
     display: flex;
     position: relative;
     background-color: #1a1a2e;
+    background-image: url('../img/background_hsr.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .sidebar {

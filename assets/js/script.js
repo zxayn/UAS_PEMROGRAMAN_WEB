@@ -104,15 +104,15 @@ $(document).ready(function() {
                     <input type="hidden" name="current_path_logo" value="${char.path_logo || ''}">
                     <div class="mb-3"><label class="form-label">Nama</label><input type="text" class="form-control" name="name" value="${escapeHtml(char.name)}" required></div>
                     <div class="mb-3"><label class="form-label">Kategori</label><select class="form-select" name="category" required><option value="Baru" ${char.category == 'Baru' ? 'selected' : ''}>Baru</option><option value="Rerun" ${char.category == 'Rerun' ? 'selected' : ''}>Rerun</option><option value="Kolaborasi" ${char.category == 'Kolaborasi' ? 'selected' : ''}>Kolaborasi</option><option value="Light Cone" ${char.category == 'Light Cone' ? 'selected' : ''}>Light Cone</option></select></div>
-                    <div class="mb-3"><label class="form-label">Rarity</label><input type="number" class="form-control" name="rarity" value="${char.rarity}" min="1" max="5" required></div>
+                    <div class="mb-3"><label class="form-label">Bintang</label><input type="number" class="form-control" name="rarity" value="${char.rarity}" min="1" max="5" required></div>
                     <div class="mb-3"><label class="form-label">Judul Event</label><input type="text" class="form-control" name="title" value="${escapeHtml(char.title)}"></div>
                     <div class="mb-3"><label class="form-label">Waktu Event</label><input type="text" class="form-control" name="event_time" value="${escapeHtml(char.event_time)}" required></div>
                     <div class="mb-3"><label class="form-label">Deskripsi</label><textarea class="form-control" name="description" rows="3" required>${escapeHtml(char.description)}</textarea></div>
-                    <div class="mb-3"><label class="form-label">Artwork</label><div><img src="uploads/${escapeHtml(char.image)}" style="max-width:100px;border-radius:5px;"></div></div>
-                    <div class="mb-3"><label class="form-label">Ganti Artwork</label><input class="form-control" type="file" name="image"></div>
+                    <div class="mb-3"><label class="form-label">Gambar</label><div><img src="uploads/${escapeHtml(char.image)}" style="max-width:100px;border-radius:5px;"></div></div>
+                    <div class="mb-3"><label class="form-label">Ganti Gambar</label><input class="form-control" type="file" name="image"></div>
                     <hr class="my-3">
-                    <div class="mb-3"><label class="form-label">Ikon/Logo</label><div>${char.path_logo ? `<img src="uploads/${escapeHtml(char.path_logo)}" style="max-width:50px;border-radius:5px;">` : 'Tidak ada'}</div></div>
-                    <div class="mb-3"><label class="form-label">Ganti Ikon/Logo</label><input class="form-control" type="file" name="path_logo"></div>
+                    <div class="mb-3"><label class="form-label">Logo Path</label><div>${char.path_logo ? `<img src="uploads/${escapeHtml(char.path_logo)}" style="max-width:50px;border-radius:5px;">` : 'Tidak ada'}</div></div>
+                    <div class="mb-3"><label class="form-label">Ganti Logo Path</label><input class="form-control" type="file" name="path_logo"></div>
                 </form>`;
             
             modalBody.html(formHtml);
