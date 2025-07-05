@@ -1,0 +1,465 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+
+/* =================================================================== */
+/* --- PENGATURAN DASAR & LOADING SCREEN --- */
+/* =================================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0c0a14;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c0a14;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease-out;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+#loading-screen p {
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+
+#app-wrapper.hidden {
+    visibility: hidden;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =================================================================== */
+/* --- BAGIAN 1: HALAMAN HOME --- */
+/* =================================================================== */
+
+#home-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: url('../img/background_home.jpeg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 1.5s ease-out, transform 1s ease-out;
+}
+
+#home-section.fade-out-up {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+#home-section::before {
+    content: '';
+    background: linear-gradient(to top, rgba(12, 10, 20, 0.8) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(12, 10, 20, 0.5) 100%);
+}
+
+.top-bar,
+.enter-prompt,
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 9.5rem;
+    align-items: center;
+}
+
+.logo img {
+    height: 5.5rem;
+}
+
+.top-icons i {
+    font-size: 1.2rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.top-icons i:hover {
+    color: #ffd700;
+}
+
+.hero-text {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 0%;
+}
+
+.hero-title-image {
+    max-width: 65%;
+    height: auto;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5));
+}
+
+.enter-prompt {
+    padding-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    animation: subtle-pulse 2.5s infinite;
+}
+
+@keyframes subtle-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+
+/* =================================================================== */
+/* --- BAGIAN 2: HALAMAN DATABASE (OPTIMIZED) --- */
+/* =================================================================== */
+
+#database-section {
+    display: flex;
+    position: relative;
+    background-color: #1a1a2e;
+}
+
+.sidebar {
+    flex: 0 0 280px;
+    background-color: #162447;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 2rem 1rem;
+    border-right: 1px solid #0f3460;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.content-area {
+    flex-grow: 1;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-title {
+    color: #e94560;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.nav-item.category-header {
+    color: #e94560;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 1rem 0.5rem 0.5rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #1f4068;
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    color: #b4b4b4;
+    padding: 0.65rem 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: rgba(233, 69, 96, 0.1);
+    color: #ffffff;
+    border-left: 3px solid #e94560;
+}
+
+.arrow-icon {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #e94560;
+    margin-right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover .arrow-icon,
+.nav-link.active .arrow-icon {
+    opacity: 1;
+}
+
+.character-card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1400px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards ease-out;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.character-card {
+    background: rgba(12, 10, 20, 0.75);
+    border: 1px solid #1f4068;
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 8px;
+    flex: 0 0 420px;
+    z-index: 2;
+}
+
+.character-artwork {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.character-artwork img {
+    max-height: 85vh;
+    max-width: 100%;
+    object-fit: contain;
+    /* filter: drop-shadow(0 0 25px rgba(150, 200, 255, 0.2)); <-- Dihapus karena diatur oleh animasi */
+}
+
+.animated-character img {
+    animation: float 6s ease-in-out infinite, pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(255, 255, 180, 0.4)); /* Kuning redup */
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 180, 0.8)); /* Kuning lebih terang */
+    }
+}
+
+.card-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #e94560;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+.character-path-logo {
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+.character-path-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.character-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+.rarity {
+    font-size: 1.5rem;
+    color: #ffc107;
+}
+.event-info {
+    margin-bottom: 1.5rem;
+}
+.event-title {
+    font-weight: 500;
+    color: #b4b4b4;
+}
+.event-time .highlight-box {
+    background-color: #e94560;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+.character-description {
+    line-height: 1.7;
+    color: #dcdcdc;
+    font-size: 0.9rem;
+    overflow-y: auto;   
+    scrollbar-width: none;
+    max-height: 170px;
+}
+.character-description::-webkit-scrollbar {
+    display: none;
+}
+.card-footer-actions {
+    margin-top: 2rem;
+}
+.btn-download {
+    background-color: #e94560;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+.btn-download:hover {
+    background-color: #c33c52;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-item .nav-link {
+    flex-grow: 1;
+}
+.nav-actions {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    background-color: rgba(233, 69, 96, 0.2);
+    padding: 4px;
+    border-radius: 5px;
+    gap: 10px;
+}
+.nav-item:hover .nav-actions {
+    display: flex;
+}
+.nav-actions .btn-edit,
+.nav-actions .btn-delete {
+    color: #b4b4b4;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-size: 0.85rem;
+}
+.nav-actions .btn-edit:hover {
+    color: #ffc107;
+}
+.nav-actions .btn-delete:hover {
+    color: #e94560;
+}
+
+
+/* =================================================================== */
+/* --- GAYA UNTUK MODAL (POPUP) --- */
+/* =================================================================== */
+
+.modal-content { background-color: #162447; border: 1px solid #1f4068; border-radius: 8px; }
+.modal-header { border-bottom: 1px solid #e94560; padding: 1rem 1.5rem; }
+.modal-title { color: #e94560; font-weight: 700; font-size: 1.2rem; }
+.modal-body { padding: 1.5rem; }
+.modal-body .form-label { font-size: 0.9rem; margin-bottom: 0.3rem; }
+.modal-body .form-control, .modal-body .form-select { background-color: #0f3460; color: #e0e0e0; border: 1px solid #1f4068; padding: 0.5rem 0.9rem; font-size: 0.95rem; }
+.modal-body .form-control:focus, .modal-body .form-select:focus { background-color: #0f3460; color: #ffffff; border-color: #e94560; box-shadow: 0 0 0 0.25rem rgba(233, 69, 96, 0.25); }
+.modal-footer { padding: 0.75rem 1.5rem; border-top: 1px solid #1f4068; }
+@media (min-width: 768px) { .modal-dialog { max-width: 650px; } }
+
+/* =================================================================== */
+/* --- GAYA RESPONSIVE --- */
+/* =================================================================== */
+
+@media (max-width: 991.98px) {
+    #home-section {
+        justify-content: center;
+    }
+    .top-bar {
+        padding: 1rem 1.5rem;
+    }
+    #database-section {
+        flex-direction: column;
+    }
+    .sidebar {
+        position: static;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .content-area {
+        min-height: auto;
+    }
+    .character-card-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .character-artwork {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+    .character-artwork img {
+        max-height: 50vh;   
+    }
+    .character-card {
+        max-width: 90%;
+        flex-basis: auto;
+    }
+}
