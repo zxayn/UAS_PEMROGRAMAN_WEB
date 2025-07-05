@@ -39,19 +39,12 @@ body {
     pointer-events: none;
 }
 
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.loading-media {
+    width: 650px; /* Anda bisa sesuaikan ukurannya */
+    height: auto;
+    border-radius: 8px;
     margin-bottom: 20px;
-}
-
-#loading-screen p {
-    color: rgba(255, 255, 255, 0.8);
-    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2); /* Opsional: menambah bayangan */
 }
 
 #app-wrapper.hidden {
@@ -116,6 +109,25 @@ body {
     margin-left: 1.5rem;
     cursor: pointer;
     transition: color 0.3s ease;
+}
+
+.top-icons i, #contact-us-icon {
+    font-size: 1.2rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease; /* Tambahkan transisi transform */
+    display: inline-block; /* Agar transform bekerja */
+}
+
+.top-icons i:hover, #contact-us-icon:hover {
+    color: #ffd700;
+    transform: scale(1.1); /* Efek perbesar saat hover */
+}
+
+/* KODE BARU: Penyesuaian untuk ikon Contact Us */
+#contact-us-icon img {
+    height: 1.8rem; /* Sesuaikan ukuran gambar agar seimbang dengan ikon lainnya */
+    vertical-align: middle; /* Menjaga posisi vertikal agar sejajar */
 }
 
 .top-icons i:hover {
@@ -239,6 +251,17 @@ body {
     opacity: 1;
 }
 
+.content-area {
+    position: relative;
+}
+
+.db-top-icons {
+    position: absolute;
+    top: 3.5rem;
+    right: 9.5rem;
+    z-index: 10;
+}
+
 .character-card-wrapper {
     display: flex;
     align-items: center;
@@ -278,7 +301,7 @@ body {
     max-height: 85vh;
     max-width: 100%;
     object-fit: contain;
-    /* filter: drop-shadow(0 0 25px rgba(150, 200, 255, 0.2)); <-- Dihapus karena diatur oleh animasi */
+
 }
 
 .animated-character img {
@@ -328,10 +351,27 @@ body {
     color: #fff;
     margin: 0;
 }
+
+.rarity-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
 .rarity {
     font-size: 1.5rem;
     color: #ffc107;
 }
+.element-icon {
+    width: 28px;
+    height: 28px;
+}
+.element-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* --- END OF RARITY --- */
+
 .event-info {
     margin-bottom: 1.5rem;
 }
@@ -359,8 +399,13 @@ body {
 .character-description::-webkit-scrollbar {
     display: none;
 }
+
+/* --- KODE LAMA & BARU UNTUK FOOTER CARD --- */
 .card-footer-actions {
     margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 9.5rem; /* Jarak antara tombol download dan profile */
 }
 .btn-download {
     background-color: #e94560;
@@ -374,6 +419,26 @@ body {
 .btn-download:hover {
     background-color: #c33c52;
 }
+.character-profile {
+    width: 75px; /* Ukuran gambar profil */
+    height: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #1f4068;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.character-profile:hover {
+    transform: scale(1.1);
+    border-color: #e94560;
+}
+.character-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* --- END OF FOOTER CARD --- */
+
 
 .nav-item {
     position: relative;
@@ -427,6 +492,54 @@ body {
 .modal-footer { padding: 0.75rem 1.5rem; border-top: 1px solid #1f4068; }
 @media (min-width: 768px) { .modal-dialog { max-width: 650px; } }
 
+
+#artworkModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 1rem);
+}
+
+.modal-content-artwork {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+#fullArtworkImage {
+    max-width: 100%;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.btn-close-artwork {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 10;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.3s;
+    border: none;
+}
+.btn-close-artwork:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 /* =================================================================== */
 /* --- GAYA RESPONSIVE --- */
 /* =================================================================== */
@@ -466,4 +579,217 @@ body {
         max-width: 90%;
         flex-basis: auto;
     }
+}
+
+
+/* =================================================================== */
+/* --- GAYA UNTUK NOTIFIKASI SUKSES (TOAST) --- */
+/* =================================================================== */
+
+.toast-notification {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background-color: #1e2a47;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    z-index: 2000;
+    width: 350px;
+    transform: translateX(calc(100% + 30px));
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    overflow: hidden;
+    border: 1px solid #0f3460;
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+}
+
+.toast-icon {
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.toast-content {
+    flex-grow: 1;
+}
+
+.toast-title {
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #ffffff;
+}
+
+.toast-message {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    color: #b4b4b4;
+}
+
+.toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background-color: #38c172; /* Warna hijau untuk sukses */
+    animation: progress-countdown 4s linear forwards;
+}
+
+/* Animasi untuk progress bar */
+@keyframes progress-countdown {
+    to {
+        width: 0%;
+    }
+}
+
+
+/* Styling & Animasi untuk Ikon Centang SVG */
+.checkmark {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: #38c172;
+    stroke-miterlimit: 10;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.3s forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+/* =================================================================== */
+/* --- GAYA UNTUK MODAL KONFIRMASI --- */
+/* =================================================================== */
+
+.confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 10, 20, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.confirm-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.confirm-box {
+    background-color: #162447;
+    border: 1px solid #1f4068;
+    border-radius: 12px;
+    padding: 30px 40px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.confirm-overlay.show .confirm-box {
+    transform: scale(1);
+}
+
+.confirm-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 20px 0 10px 0;
+}
+
+.confirm-message {
+    font-size: 1rem;
+    color: #b4b4b4;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-confirm {
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn-confirm:hover {
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background-color: #4a5568;
+    color: #e0e0e0;
+}
+.btn-cancel:hover {
+    background-color: #2d3748;
+}
+
+.btn-ok {
+    background-color: #e53e3e; /* Warna merah untuk aksi delete/penting */
+    color: #ffffff;
+}
+.btn-ok:hover {
+    background-color: #c53030;
+}
+
+
+/* Styling & Animasi untuk Ikon Tanda Tanya SVG */
+.question-mark {
+    width: 70px;
+    height: 70px;
+    stroke-width: 3;
+    stroke: #f6ad55; /* Warna oranye-kuning */
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+}
+
+.question-mark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.question-mark-path {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
 }

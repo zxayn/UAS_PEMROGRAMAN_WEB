@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    function uploadFile($file_key, $upload_dir = "../uploads/") { // Path diubah ke ../uploads/
+    function uploadFile($file_key, $upload_dir = "../uploads/") {
         if (isset($_FILES[$file_key]) && $_FILES[$file_key]["error"] == 0) {
             $original_name = basename($_FILES[$file_key]["name"]);
             $file_extension = pathinfo($original_name, PATHINFO_EXTENSION);
@@ -43,6 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $image_name = uploadFile('image');
     $path_logo_name = uploadFile('path_logo');
+    // KODE BARU: Upload file untuk gambar profil dan ikon elemen
+    $profile_image_name = uploadFile('profile_image');
+    $element_icon_name = uploadFile('element_icon');
 
     if (!$image_name) {
         $response['message'] = "Gambar artwork wajib diisi dan berhasil diupload.";
@@ -51,8 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    $stmt = $conn->prepare("INSERT INTO characters (name, title, description, category, rarity, event_time, image, path_logo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssisss", $name, $title, $description, $category, $rarity, $event_time, $image_name, $path_logo_name);
+    $stmt = $conn->prepare("INSERT INTO characters (name, title, description, category, rarity, event_time, image, path_logo, profile_image, element_icon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Perhatikan penambahan 'ss' untuk dua field string baru
+    $stmt->bind_param("ssssisssss", $name, $title, $description, $category, $rarity, $event_time, $image_name, $path_logo_name, $profile_image_name, $element_icon_name);
     
     if ($stmt->execute()) {
         $response['success'] = true;

@@ -25,6 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     
     $current_image = $_POST['current_image'] ?? '';
     $current_path_logo = $_POST['current_path_logo'] ?? '';
+    // KODE BARU: Mengambil nama file saat ini dari form
+    $current_profile_image = $_POST['current_profile_image'] ?? '';
+    $current_element_icon = $_POST['current_element_icon'] ?? '';
     
     function uploadFile($file_key, $current_filename, $upload_dir = "../uploads/") {
         if (isset($_FILES[$file_key]) && $_FILES[$file_key]["error"] == 0) {
@@ -44,10 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 
     $image_name_to_save = uploadFile('image', $current_image);
     $path_logo_name_to_save = uploadFile('path_logo', $current_path_logo);
+    // KODE BARU: Memproses upload untuk field baru
+    $profile_image_to_save = uploadFile('profile_image', $current_profile_image);
+    $element_icon_to_save = uploadFile('element_icon', $current_element_icon);
     
-    // UPDATE QUERY KEMBALI KE BENTUK SEMULA
-    $stmt = $conn->prepare("UPDATE characters SET name=?, title=?, description=?, category=?, rarity=?, event_time=?, image=?, path_logo=? WHERE id=?");
-    $stmt->bind_param("ssssisssi", $name, $title, $description, $category, $rarity, $event_time, $image_name_to_save, $path_logo_name_to_save, $id);
+    $stmt = $conn->prepare("UPDATE characters SET name=?, title=?, description=?, category=?, rarity=?, event_time=?, image=?, path_logo=?, profile_image=?, element_icon=? WHERE id=?");
+    // Perhatikan penambahan 'ss' sebelum 'i' terakhir
+    $stmt->bind_param("ssssisssssi", $name, $title, $description, $category, $rarity, $event_time, $image_name_to_save, $path_logo_name_to_save, $profile_image_to_save, $element_icon_to_save, $id);
 
     if ($stmt->execute()) {
         $response['success'] = true;
