@@ -49,7 +49,9 @@ if (!empty($characters)) {
             <header class="top-bar">
                 <div class="logo"><img src="assets/img/starrail_logo.png" alt="Star Rail Logo"></div>
                 <div class="top-icons">
-                    <i class="fas fa-globe"></i>
+                    <a href="index.php" class="home-button" title="Kembali ke Home">
+                        <i class="fas fa-home"></i>
+                    </a>
                     <i class="fas fa-user" id="contact-us-icon" data-bs-toggle="modal" data-bs-target="#contactModal">
                         <!-- <img src="assets/img/contact_us.png" alt="Contact Us"> -->
                     </i>
@@ -96,7 +98,9 @@ if (!empty($characters)) {
             </nav>
             <main class="content-area">
                 <div class="top-icons db-top-icons">
-                    <i class="fas fa-globe"></i>
+                    <a href="index.php" class="home-button" title="Kembali ke Home">
+                        <i class="fas fa-home"></i>
+                    </a>
                     <i class="fas fa-user" id="contact-us-icon" data-bs-toggle="modal" data-bs-target="#contactModal">
                         <!-- <img src="assets/img/contact_us.png" alt="Contact Us"> -->
                     </i>

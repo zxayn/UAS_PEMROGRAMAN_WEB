@@ -112,22 +112,40 @@ body {
 }
 
 .top-icons i, #contact-us-icon {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-left: 1.5rem;
     cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease; /* Tambahkan transisi transform */
-    display: inline-block; /* Agar transform bekerja */
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
 }
 
 .top-icons i:hover, #contact-us-icon:hover {
     color: #ffd700;
-    transform: scale(1.1); /* Efek perbesar saat hover */
+    transform: scale(1.1);
 }
 
-/* KODE BARU: Penyesuaian untuk ikon Contact Us */
+.top-icons i, #home-button {
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.top-icons a.home-button {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* OPSIONAL: Transisi fade saat reload */
+body.fade-out-fast {
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+}
+
 #contact-us-icon img {
-    height: 1.8rem; /* Sesuaikan ukuran gambar agar seimbang dengan ikon lainnya */
-    vertical-align: middle; /* Menjaga posisi vertikal agar sejajar */
+    height: 1.8rem;
+    vertical-align: middle;
 }
 
 .top-icons i:hover {

@@ -12,6 +12,10 @@ $(document).ready(function() {
             $(this).addClass('fade-out-up').on('transitionend', () => $(this).hide());
         });
 
+        $('.top-bar').on('click', function(e) {
+        e.stopPropagation();
+        });
+
         if (typeof InitialCharacterId !== 'undefined' && InitialCharacterId > 0) {
             renderCharacterDetail(InitialCharacterId);
         }
